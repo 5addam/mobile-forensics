@@ -18,7 +18,7 @@ def displayInternalStorge(device):
     print(device.shell(f'ls -LR {INTERNAL_STORAGE_PATH}'))
 
 def displayExternalStorge(device):
-    print(device.shell(f'ls -LR {INTERNAL_STORAGE_PATH}'))
+    print(device.shell(f'ls -LR {EXTERNAL_STORAGE_PATH}'))
 
 
     
@@ -70,15 +70,11 @@ def get_random_string():
 def overrideData(ramdon_str, dir):
     for root, dirs, files in os.walk(os.path.abspath(dir)):
         for file in files:
-            # print(os.path.join(root, file))
             path = os.path.join(root, file)
-            # bin_data = open(os.path.join(root, file), 'rb').read()
-            # hex_data = codecs.encode(bin_data, "hex_codec")        
-            # print(hex_data)
             with open(path, "rb+") as f:
                 data= f.read()
                 f.seek(0)
-                f.write(random_str.encode("utf8"))
+                f.write(ramdon_str.encode("utf8"))
                 f.truncate()
     print('Successfully Overriden!! \n')
 
